@@ -1,43 +1,58 @@
-#include "my_gpio.h" //originally here
+#include "my_gpio.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+#include "inc/hw_types.h"
+#include "inc/hw_memmap.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/gpio.h"
+#include "driverlib/adc.h"
+
 #include "driverlib/pin_map.h" //Needed for UART
 #include "driverlib/uart.h" //Needed for UART
 #include "utils/uartstdio.h" //Needed for UART
-
-//Prototypes
-void InitConsole(void);
+int alert = 1; //active
 
 int main(void)
 {
-    InitGPIO();
-    // UART initialization
-    InitConsole();
+    SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_XTAL_25MHZ |SYSCTL_OSC_MAIN);
+    InitGPIO(); //GPIO initialization
+    ADCFunc(); //ADC initialization
+    InitConsole(); // UART initialization
+
     UARTprintf("Hello world!!!\n");
     while (1)
     {
-        /* */
+        ADCProcessorTrigger(ADC0_BASE, ADC_Sequence_Number); //Triggers ADC conversion
+        while(!ADCIntStatus(ADC0_BASE, ADC_Sequence_Number, false)) // Wait for conversion to be completed.
+        {}
+        ADCIntClear(ADC0_BASE, ADC_Sequence_Number);  // Clear the ADC interrupt flag.
+
+        uint32_t adc_Val;
+        ADCSequenceDataGet(ADC0_BASE, ADC_Sequence_Number, &adc_Val);  // Read ADC Values.
+        float Voltage = (adc_Val*ADC_REF_VOL)/ADC_MAX;
+        //UARTprintf("Voltage = %f\n",Voltage);
+
+        if(Voltage>=1.0)
+        {
+            UARTprintf("***** INTRUDER ALERT, GET OUT OF MY HOUSE ******\n");
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_BLUE_PIN, 0);
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_RED_PIN, LED_RED_PIN);
+            uint32_t clk = SysCtlClockGet();
+            SysCtlDelay(SysCtlClockGet()/10);
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_RED_PIN, 0);
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_BLUE_PIN, LED_BLUE_PIN);
+            SysCtlDelay(SysCtlClockGet()/10);
+            alert = 1;
+        }
+        else if (Voltage<1 & alert == 1)
+        {
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_RED_PIN, 0);
+            GPIOPinWrite(GPIO_PORTF_BASE, LED_BLUE_PIN, 0);
+            alert = 0;
+        }
     }
 
     return 0;
-}
-
-void InitConsole(void)
-{
-    // Enable GPIO port A which is used for UART0 pins.
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-
-    // Configure the pin muxing for UART0 functions on port A0 and A1.
-    GPIOPinConfigure(GPIO_PA0_U0RX);
-    GPIOPinConfigure(GPIO_PA1_U0TX);
-
-    // Enable UART0 so that we can configure the clock.
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-
-    // Use the internal 16MHz oscillator as the UART clock source.
-    UARTClockSourceSet(UART0_BASE, UART_CLOCK_PIOSC);
-
-     // Select the alternate (UART) function for these pins.
-    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
-
-    // Initialize the UART for console I/O. 9600 BAUD
-    UARTStdioConfig(0, 9600, 16000000);
 }

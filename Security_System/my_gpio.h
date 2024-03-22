@@ -1,14 +1,22 @@
-#ifndef MY_GPIO_H_
-#define MY_GPIO_H_
-
 #include <stdint.h>
+#include <stdio.h>
 #include <stdbool.h>
-#include "inc/hw_memmap.h"
+
 #include "inc/hw_types.h"
+#include "inc/hw_memmap.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
+#include "driverlib/adc.h"
 
-#define ONE_SEC         8000000 /* in 80 MHz */
+#include "driverlib/pin_map.h" //Needed for UART
+#include "driverlib/uart.h" //Needed for UART
+#include "utils/uartstdio.h" //Needed for UART
+
+#define ADC_REF_VOL 3.3
+#define ADC_MAX 4095    //12 bit ADC (2^12)
+#define ADC_Sequence_Number 0 //Not sure what this is for
+
+//#define ONE_SEC         8000000 /* in 80 MHz */
 
 #define LED_RED_PIN             GPIO_PIN_1 /* 0000 0010 --> bit 1 for red LED */
 #define LED_BLUE_PIN            GPIO_PIN_2 /* 0000 0100 --> bit 2 for blue LED */
@@ -37,6 +45,6 @@
 
 //Function prototypes
 extern void InitGPIO(void);
-
-
-#endif /* MY_GPIO_H_ */
+extern void InitConsole(void);
+extern void ADCFunc(void);
+extern void IntPortFHandler(void);
