@@ -28,12 +28,12 @@
 		<link>
 			<name>driverlib.lib</name>
 			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib</locationURI>
+			<location>C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib</location>
 		</link>
 		<link>
 			<name>uartstdio.c</name>
 			<type>1</type>
-			<locationURI>PARENT-5-PROJECT_LOC/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.c</locationURI>
+			<location>C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.c</location>
 		</link>
 	</linkedResources>
 	<variableList>
