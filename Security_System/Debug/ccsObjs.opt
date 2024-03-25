@@ -1,3 +1,4 @@
+"./Initialization.obj"
 "./main.obj"
 "./my_gpio.obj"
 "./tm4c123gh6pm_startup_ccs.obj"

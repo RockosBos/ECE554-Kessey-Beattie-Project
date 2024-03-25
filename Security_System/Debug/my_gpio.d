@@ -2,6 +2,9 @@
 
 my_gpio.obj: ../my_gpio.c
 my_gpio.obj: ../my_gpio.h
+my_gpio.obj: ../initialization.h
+my_gpio.obj: ../my_gpio.h
+my_gpio.obj: ../initialization.h
 my_gpio.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h
 my_gpio.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 my_gpio.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -27,6 +30,12 @@ my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h
 ../my_gpio.c:
 
 ../my_gpio.h:
+
+../initialization.h:
+
+../my_gpio.h:
+
+../initialization.h:
 
 C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h:
 

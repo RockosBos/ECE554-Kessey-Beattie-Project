@@ -10,6 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./Initialization.obj" \
 "./main.obj" \
 "./my_gpio.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
@@ -145,8 +146,8 @@ Security_System.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "my_gpio.obj" "tm4c123gh6pm_startup_ccs.obj" "uartstdio.obj" 
-	-$(RM) "main.d" "my_gpio.d" "tm4c123gh6pm_startup_ccs.d" "uartstdio.d" 
+	-$(RM) "Initialization.obj" "main.obj" "my_gpio.obj" "tm4c123gh6pm_startup_ccs.obj" "uartstdio.obj" 
+	-$(RM) "Initialization.d" "main.d" "my_gpio.d" "tm4c123gh6pm_startup_ccs.d" "uartstdio.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

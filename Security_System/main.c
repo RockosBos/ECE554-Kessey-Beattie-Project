@@ -1,24 +1,15 @@
+//Includes needed for application functionality
 #include "my_gpio.h"
-#include <stdint.h>
-#include <stdio.h>
-#include <stdbool.h>
+#include "initialization.h"
 
-#include "inc/hw_types.h"
-#include "inc/hw_memmap.h"
-#include "driverlib/sysctl.h"
-#include "driverlib/gpio.h"
-#include "driverlib/adc.h"
-
-#include "driverlib/pin_map.h" //Needed for UART
-#include "driverlib/uart.h" //Needed for UART
-#include "utils/uartstdio.h" //Needed for UART
+//Initializations
 int alert = 1; //active
 
 int main(void)
 {
     SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_XTAL_25MHZ |SYSCTL_OSC_MAIN);
     InitGPIO(); //GPIO initialization
-    ADCFunc(); //ADC initialization
+    ADCInit(); //ADC initialization
     InitConsole(); // UART initialization
 
     UARTprintf("Hello world!!!\n");
@@ -32,6 +23,7 @@ int main(void)
         uint32_t adc_Val;
         ADCSequenceDataGet(ADC0_BASE, ADC_Sequence_Number, &adc_Val);  // Read ADC Values.
         float Voltage = (adc_Val*ADC_REF_VOL)/ADC_MAX;
+        //float Voltage2 =
         //UARTprintf("Voltage = %f\n",Voltage);
 
         if(Voltage>=1.0)
