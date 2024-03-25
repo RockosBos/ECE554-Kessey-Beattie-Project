@@ -32,7 +32,7 @@ int main(void)
         uint32_t adc_Val;
         ADCSequenceDataGet(ADC0_BASE, ADC_Sequence_Number, &adc_Val);  // Read ADC Values.
         float Voltage = (adc_Val*ADC_REF_VOL)/ADC_MAX;
-        //UARTprintf("Voltage = %f\n",Voltage);
+        UARTprintf("Voltage = %f\n",Voltage);
 
         if(Voltage>=1.0)
         {
