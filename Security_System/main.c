@@ -8,9 +8,9 @@ int alert = 1; //active
 int main(void)
 {
     SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_XTAL_25MHZ |SYSCTL_OSC_MAIN);
+    InitConsole(); // UART initialization
     InitGPIO(); //GPIO initialization
     ADCInit(); //ADC initialization
-    InitConsole(); // UART initialization
 
     UARTprintf("Hello world!!!\n");
     while (1)

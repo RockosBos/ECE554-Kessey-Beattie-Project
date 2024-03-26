@@ -13,15 +13,24 @@ void IntPortFHandler(void)
         UARTprintf("***SW2 was pressed***\n");
     }
 
-    //clear flag
-    GPIOIntClear(GPIO_PORTF_BASE, status);
+    GPIOIntClear(GPIO_PORTF_BASE, status); //clear flag
 }
 
 void IntPortBHandler(void)
 {
     uint32_t status = GPIOIntStatus(GPIO_PORTB_BASE, true);
-    UARTprintf("***Pin PB7 Interrupt***\n");
-    //clear flag
-    GPIOIntClear(GPIO_PORTB_BASE, status);
+    if (status & INPUT_WINDOW)
+    {
+        UARTprintf("***Pin PB5 Interrupt***\n"); //Pin PB5
+    }
+    if (status & INPUT_DOOR)
+    {
+        UARTprintf("***Pin PB6 Interrupt***\n"); //Pin PB6
+    }
+    if (status & INPUT_GARAGE)
+    {
+        UARTprintf("***Pin PB7 Interrupt***\n"); //Pin PB7
+    }
 
+    GPIOIntClear(GPIO_PORTB_BASE, status); //clear flag
 }

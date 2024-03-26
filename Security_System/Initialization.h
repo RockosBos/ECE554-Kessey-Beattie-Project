@@ -64,5 +64,6 @@
 extern void InitGPIO(void);
 extern void InitConsole(void);
 extern void ADCInit(void);
+extern void InitializationCheck();
 
 #endif /* INITIALIZATION_H_ */

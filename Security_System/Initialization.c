@@ -1,5 +1,9 @@
 #include "initialization.h"
 
+int ADCInitComplete=0;
+int ConsoleInitComplete=0;
+int GPIOInitComplete=0;
+
 void InitGPIO(void)
 {
     //Port F***************************************************************************************
@@ -34,6 +38,9 @@ void InitGPIO(void)
     GPIOIntTypeSet(GPIO_PORTB_BASE, INPUT_WINDOW|INPUT_DOOR|INPUT_GARAGE, GPIO_FALLING_EDGE);
     GPIOIntRegister(GPIO_PORTB_BASE, IntPortBHandler);
     GPIOIntEnable(GPIO_PORTB_BASE, INPUT_WINDOW|INPUT_DOOR|INPUT_GARAGE);
+
+    GPIOInitComplete = 1;
+    InitializationCheck(ADCInitComplete,ConsoleInitComplete,GPIOInitComplete);
 }
 
 void InitConsole(void)
@@ -56,6 +63,8 @@ void InitConsole(void)
 
     // Initialize the UART for console I/O. 9600 BAUD
     UARTStdioConfig(0, 9600, 16000000);
+    ConsoleInitComplete = 1;
+    InitializationCheck(ADCInitComplete,ConsoleInitComplete,GPIOInitComplete);
 }
 
 void ADCInit(void) //ADC Measurements
@@ -75,6 +84,19 @@ void ADCInit(void) //ADC Measurements
 
     //ADC
     ADCIntClear(ADC0_BASE, ADC_Sequence_Number);
+
+    ADCInitComplete = 1;
+    InitializationCheck(ADCInitComplete,ConsoleInitComplete,GPIOInitComplete);
 }
 
-
+void InitializationCheck(ADCInitComplete,ConsoleInitComplete,GPIOInitComplete)
+{
+    if (ADCInitComplete & ConsoleInitComplete & GPIOInitComplete)
+    {
+        UARTprintf("***** Initialization Complete ******\n");
+    }
+    else
+    {
+        UARTprintf("Initializing...\n");
+    }
+}
