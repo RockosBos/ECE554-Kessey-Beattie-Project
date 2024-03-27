@@ -100,3 +100,16 @@ void InitializationCheck(ADCInitComplete,ConsoleInitComplete,GPIOInitComplete)
         UARTprintf("Initializing...\n");
     }
 }
+
+// SysTick timer initialization
+void SysTickInitialization()
+{
+
+    SysTickEnable();
+    int clk = SysCtlClockGet();
+    SysTickPeriodSet(SysCtlClockGet()/1000);   //80MHz clock generates 80000 ticks per 1ms
+    //SysTickIntRegister(&SysTick_IRQ_Handler);
+    SysTickIntRegister(&SysTick_Handler);
+    SysTickIntEnable();  // interrupt enable
+}
+

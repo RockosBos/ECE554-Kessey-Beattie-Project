@@ -23,6 +23,7 @@ my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
+my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h
 my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
 my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 my_gpio.obj: C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h
@@ -72,6 +73,8 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
 

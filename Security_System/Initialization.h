@@ -19,7 +19,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 #include "driverlib/adc.h"
-
+#include "driverlib/systick.h"
 #include "driverlib/pin_map.h" //Needed for UART
 #include "driverlib/uart.h" //Needed for UART
 #include "utils/uartstdio.h" //Needed for UART
@@ -65,5 +65,6 @@ extern void InitGPIO(void);
 extern void InitConsole(void);
 extern void ADCInit(void);
 extern void InitializationCheck();
+extern void SysTickInitialization();
 
 #endif /* INITIALIZATION_H_ */

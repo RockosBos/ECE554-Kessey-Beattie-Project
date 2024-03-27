@@ -22,6 +22,7 @@ Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
+Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h
 Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
 Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 Initialization.obj: C:/ti/TivaWare_C_Series-2.2.0.295/utils/uartstdio.h
@@ -69,6 +70,8 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
 
